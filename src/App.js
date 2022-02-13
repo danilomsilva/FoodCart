@@ -1,5 +1,7 @@
+import HeaderBar from "./Components/Header/Header"
+
 function App() {
-  return <></>
+  return <HeaderBar />
 }
 
 export default App
