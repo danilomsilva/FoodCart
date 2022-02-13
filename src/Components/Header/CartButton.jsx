@@ -10,15 +10,17 @@ const StyledBadge = styled(Box)`
   transform: translateX(0.4rem);
   background-color: ${colours.red};
   border-radius: 4rem;
-  width: 2rem;
-  height: 2rem;
+  width: 1.5rem;
+  height: 1.5rem;
   font-size: 1rem;
   color: ${colours.white};
+  position: absolute;
+  transform: translate(1rem, -0.5rem);
 `
 
 const CartButton = () => {
   return (
-    <Fab variant="extended">
+    <Fab variant="extended" style={{ width: "5rem" }}>
       <ShoppingCartIcon />
       <StyledBadge>2</StyledBadge>
     </Fab>
