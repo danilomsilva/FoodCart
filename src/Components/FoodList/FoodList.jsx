@@ -2,7 +2,7 @@ import { data } from "../../data"
 import { Grid } from "@mui/material"
 import FoodItem from "./FoodItem"
 
-const FoodList = () => {
+const FoodList = ({ handleAddItem }) => {
   return (
     <>
       <Grid
@@ -12,7 +12,9 @@ const FoodList = () => {
         style={{ display: "flex", marginTop: "2rem" }}
       >
         {data?.map((food) => {
-          return <FoodItem data={food} key={food.id} />
+          return (
+            <FoodItem data={food} key={food.id} handleAddItem={handleAddItem} />
+          )
         })}
       </Grid>
     </>

@@ -2,6 +2,8 @@ import { Box, Fab } from "@mui/material"
 import { colours } from "../../MUITheme"
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
 import styled from "styled-components"
+import { useContext } from "react"
+import { cartItemsContext } from "../../App"
 
 const StyledBadge = styled(Box)`
   display: flex;
@@ -19,10 +21,11 @@ const StyledBadge = styled(Box)`
 `
 
 const CartButton = () => {
+  const itemsContext = useContext(cartItemsContext)
   return (
     <Fab variant="extended" style={{ width: "5rem" }}>
       <ShoppingCartIcon />
-      <StyledBadge>2</StyledBadge>
+      <StyledBadge>{itemsContext}</StyledBadge>
     </Fab>
   )
 }

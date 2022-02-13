@@ -12,6 +12,7 @@ const StyledHeaderBar = styled(Box)`
   padding: 1rem 3rem;
   background-color: ${colours.red};
   color: ${colours.white};
+  box-shadow: 0 0 1rem ${colours.grey};
 `
 
 const HeaderBar = () => {

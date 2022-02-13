@@ -16,7 +16,7 @@ const Img = styled.img`
   object-fit: cover;
 `
 
-const FoodItem = ({ data }) => {
+const FoodItem = ({ data, handleAddItem }) => {
   const [qty, setQty] = useState(0)
 
   const handleChangeQty = (type) => {
@@ -29,16 +29,11 @@ const FoodItem = ({ data }) => {
     }
   }
 
-  const handleAddItem = () => {
-    const itemToAdd = { ...data, amount: qty }
-    console.log(itemToAdd)
-  }
-
   return (
     <Grid item xs={4}>
-      <Paper sx={{ padding: "1rem", borderRadius: "0.5rem" }} elevation={6}>
+      <Paper sx={{ overflow: "hidden", borderRadius: "0.5rem" }} elevation={6}>
         <Img src={data.imgUrl} alt="" />
-        <Box display="flex" alignItems="center">
+        <Box display="flex" alignItems="center" px={2}>
           <Box flex="1" mt={1} mr={6} height="4rem">
             <Typography variant="h6">{data.title}</Typography>
             <Typography variant="caption">{data.description}</Typography>
@@ -47,7 +42,7 @@ const FoodItem = ({ data }) => {
             <b>€ {data.price}</b>
           </Typography>
         </Box>
-        <Box mt={2} display="flex">
+        <Box mt={2} px={1} p={2} display="flex">
           <Box flex="1">
             <ButtonGroup>
               <Button
@@ -65,7 +60,11 @@ const FoodItem = ({ data }) => {
               </Button>
             </ButtonGroup>
           </Box>
-          <Button variant="contained" onClick={handleAddItem}>
+          <Button
+            variant="contained"
+            disabled={qty === 0}
+            onClick={() => handleAddItem({ ...data, amount: qty })}
+          >
             Add item
           </Button>
         </Box>
