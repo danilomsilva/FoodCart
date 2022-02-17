@@ -15,7 +15,7 @@ const StyledHeaderBar = styled(Box)`
   box-shadow: 0 0 1rem ${colours.grey};
 `
 
-const HeaderBar = () => {
+const Header = () => {
   return (
     <>
       <StyledHeaderBar m={-1}>
@@ -25,4 +25,4 @@ const HeaderBar = () => {
     </>
   )
 }
-export default HeaderBar
+export default Header

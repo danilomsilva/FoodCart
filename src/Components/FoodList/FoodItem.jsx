@@ -63,7 +63,10 @@ const FoodItem = ({ data, handleAddItem }) => {
           <Button
             variant="contained"
             disabled={qty === 0}
-            onClick={() => handleAddItem({ ...data, amount: qty })}
+            onClick={() => {
+              handleAddItem({ ...data, amount: qty })
+              setQty(0)
+            }}
           >
             Add item
           </Button>

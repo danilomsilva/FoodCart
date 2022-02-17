@@ -21,11 +21,16 @@ const StyledBadge = styled(Box)`
 `
 
 const CartButton = () => {
-  const itemsContext = useContext(cartItemsContext)
+  const ctx = useContext(cartItemsContext)
+
   return (
-    <Fab variant="extended" style={{ width: "5rem" }}>
+    <Fab
+      variant="extended"
+      style={{ width: "5rem" }}
+      onClick={ctx.handleOpenModal}
+    >
       <ShoppingCartIcon />
-      <StyledBadge>{itemsContext}</StyledBadge>
+      <StyledBadge>{ctx.amountTotal}</StyledBadge>
     </Fab>
   )
 }
