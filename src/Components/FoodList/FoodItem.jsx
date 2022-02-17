@@ -7,8 +7,9 @@ import {
   TextField,
   Typography,
 } from "@mui/material"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import styled from "styled-components"
+import { cartItemsContext } from "../../App"
 
 const Img = styled.img`
   height: 15rem;
@@ -16,8 +17,9 @@ const Img = styled.img`
   object-fit: cover;
 `
 
-const FoodItem = ({ data, handleAddItem }) => {
+const FoodItem = ({ data }) => {
   const [qty, setQty] = useState(0)
+  const ctx = useContext(cartItemsContext)
 
   const handleChangeQty = (type) => {
     if (type === "plus") {
@@ -64,7 +66,7 @@ const FoodItem = ({ data, handleAddItem }) => {
             variant="contained"
             disabled={qty === 0}
             onClick={() => {
-              handleAddItem({ ...data, amount: qty })
+              ctx.handleAddItem({ ...data, amount: qty })
               setQty(0)
             }}
           >

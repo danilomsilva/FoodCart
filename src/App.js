@@ -1,7 +1,6 @@
 import { useState } from "react"
 import { Box } from "@mui/material"
 import Header from "./components/Header/Header"
-// import backgroundImage from "./img/backgroundImage.jpeg"
 import FoodList from "./components/FoodList/FoodList"
 import CartModal from "./components/Header/CartModal"
 import { createContext } from "react"
@@ -21,8 +20,8 @@ function App() {
       value={{
         amountTotal,
         openModal,
-        handleOpenModal: setOpenModal(true),
-        handleCloseModal: setOpenModal(false),
+        handleOpenModal: () => setOpenModal(true),
+        handleCloseModal: () => setOpenModal(false),
         handleAddItem: (item) =>
           setCartItems((prev) => {
             return [...prev, item]

@@ -5,7 +5,7 @@ import CartButton from "./CartButton"
 import { Typography, Box } from "@mui/material"
 
 //styles
-const StyledHeaderBar = styled(Box)`
+const StyledHeader = styled(Box)`
   display: grid;
   grid-template-columns: 1fr max-content;
   align-items: center;
@@ -18,10 +18,10 @@ const StyledHeaderBar = styled(Box)`
 const Header = () => {
   return (
     <>
-      <StyledHeaderBar m={-1}>
+      <StyledHeader m={-1}>
         <Typography variant="h5">FoodApp React</Typography>
         <CartButton />
-      </StyledHeaderBar>
+      </StyledHeader>
     </>
   )
 }
