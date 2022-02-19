@@ -1,9 +1,9 @@
+import { useContext } from "react"
+import { colours } from "../MUITheme"
 import { Box, Fab } from "@mui/material"
-import { colours } from "../../MUITheme"
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart"
 import styled from "styled-components"
-import { useContext } from "react"
-import { cartItemsContext } from "../../App"
+import { CartContext } from "../App"
 
 const StyledBadge = styled(Box)`
   display: flex;
@@ -21,7 +21,11 @@ const StyledBadge = styled(Box)`
 `
 
 const CartButton = () => {
-  const ctx = useContext(cartItemsContext)
+  const ctx = useContext(CartContext)
+
+  const totalItems = ctx.items.reduce((obj, currentValue) => {
+    return obj + currentValue.amount
+  }, 0)
 
   return (
     <Fab
@@ -30,7 +34,7 @@ const CartButton = () => {
       onClick={ctx.handleOpenModal}
     >
       <ShoppingCartIcon />
-      <StyledBadge>{ctx.amountTotal}</StyledBadge>
+      <StyledBadge>{totalItems}</StyledBadge>
     </Fab>
   )
 }

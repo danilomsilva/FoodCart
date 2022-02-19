@@ -1,15 +1,15 @@
 import {
   Box,
   Button,
-  ButtonGroup,
   Grid,
   Paper,
-  TextField,
   Typography,
+  ButtonGroup,
+  TextField,
 } from "@mui/material"
 import { useContext, useState } from "react"
 import styled from "styled-components"
-import { cartItemsContext } from "../../App"
+import { CartContext } from "../App"
 
 const Img = styled.img`
   height: 15rem;
@@ -17,9 +17,9 @@ const Img = styled.img`
   object-fit: cover;
 `
 
-const FoodItem = ({ data }) => {
+const FoodItem = ({ item }) => {
   const [qty, setQty] = useState(0)
-  const ctx = useContext(cartItemsContext)
+  const ctx = useContext(CartContext)
 
   const handleChangeQty = (type) => {
     if (type === "plus") {
@@ -34,16 +34,16 @@ const FoodItem = ({ data }) => {
   return (
     <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
       <Paper sx={{ overflow: "hidden", borderRadius: "0.5rem" }} elevation={6}>
-        <Img src={data.imgUrl} alt="" />
+        <Img src={item.imgUrl} alt="" />
         <Box display="flex" alignItems="center" px={2}>
           <Box flex="1" mt={1} mr={6} height="4rem">
             <Typography variant="h6" style={{ whiteSpace: "nowrap" }}>
-              {data.title}
+              {item.title}
             </Typography>
-            <Typography variant="caption">{data.description}</Typography>
+            <Typography variant="caption">{item.description}</Typography>
           </Box>
           <Typography variant="h5" style={{ whiteSpace: "nowrap" }}>
-            <b>€ {data.price}</b>
+            <b>€ {item.price}</b>
           </Typography>
         </Box>
         <Box mt={2} px={1} p={2} display="flex">
@@ -68,7 +68,7 @@ const FoodItem = ({ data }) => {
             variant="contained"
             disabled={qty === 0}
             onClick={() => {
-              ctx.handleAddItem({ ...data, amount: qty })
+              ctx.handleAddItem({ ...item, amount: qty })
               setQty(0)
             }}
           >

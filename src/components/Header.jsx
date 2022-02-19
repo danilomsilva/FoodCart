@@ -1,8 +1,8 @@
 import React from "react"
-import { colours } from "../../MUITheme"
+import { colours } from "../MUITheme"
+import { Typography, Box } from "@mui/material"
 import styled from "styled-components"
 import CartButton from "./CartButton"
-import { Typography, Box } from "@mui/material"
 
 //styles
 const StyledHeader = styled(Box)`

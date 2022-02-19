@@ -1,4 +1,4 @@
-import { data } from "../../data"
+import { data } from "../data"
 import { Grid } from "@mui/material"
 import FoodItem from "./FoodItem"
 
@@ -10,8 +10,8 @@ const FoodList = () => {
       px={6}
       style={{ display: "flex", marginTop: "1rem" }}
     >
-      {data?.map((food) => {
-        return <FoodItem data={food} key={food.id} />
+      {data?.map((item) => {
+        return <FoodItem item={item} key={item.id} />
       })}
     </Grid>
   )
