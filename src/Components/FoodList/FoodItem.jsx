@@ -32,15 +32,17 @@ const FoodItem = ({ data }) => {
   }
 
   return (
-    <Grid item xs={4}>
+    <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
       <Paper sx={{ overflow: "hidden", borderRadius: "0.5rem" }} elevation={6}>
         <Img src={data.imgUrl} alt="" />
         <Box display="flex" alignItems="center" px={2}>
           <Box flex="1" mt={1} mr={6} height="4rem">
-            <Typography variant="h6">{data.title}</Typography>
+            <Typography variant="h6" style={{ whiteSpace: "nowrap" }}>
+              {data.title}
+            </Typography>
             <Typography variant="caption">{data.description}</Typography>
           </Box>
-          <Typography variant="h5">
+          <Typography variant="h5" style={{ whiteSpace: "nowrap" }}>
             <b>€ {data.price}</b>
           </Typography>
         </Box>

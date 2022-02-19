@@ -11,14 +11,10 @@ function App() {
   const [openModal, setOpenModal] = useState(false)
   const [cartItems, setCartItems] = useState([])
 
-  // sum of all items added to cart
-  let amountTotal = 0
-  cartItems.map((item) => (amountTotal += item.amount))
-
   return (
     <cartItemsContext.Provider
       value={{
-        amountTotal,
+        cartItems,
         openModal,
         handleOpenModal: () => setOpenModal(true),
         handleCloseModal: () => setOpenModal(false),

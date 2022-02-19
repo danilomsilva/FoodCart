@@ -6,9 +6,9 @@ const FoodList = () => {
   return (
     <Grid
       container
-      spacing={2}
-      px={20}
-      style={{ display: "flex", marginTop: "2rem" }}
+      spacing={4}
+      px={6}
+      style={{ display: "flex", marginTop: "1rem" }}
     >
       {data?.map((food) => {
         return <FoodItem data={food} key={food.id} />
