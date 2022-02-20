@@ -1,4 +1,5 @@
 import {
+  Alert,
   Box,
   Button,
   Grid,
@@ -19,6 +20,7 @@ const Img = styled.img`
 
 const FoodItem = ({ item }) => {
   const [qty, setQty] = useState(0)
+  const [showMessage, setShowMessage] = useState(false)
   const ctx = useContext(CartContext)
 
   const handleChangeQty = (type) => {
@@ -31,12 +33,21 @@ const FoodItem = ({ item }) => {
     }
   }
 
+  const handleAddItemToCart = () => {
+    ctx.handleAddItem({ ...item, amount: qty })
+    setQty(0)
+    setShowMessage(true)
+    setTimeout(() => {
+      setShowMessage(false)
+    }, 3000)
+  }
+
   return (
     <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
       <Paper sx={{ overflow: "hidden", borderRadius: "0.5rem" }} elevation={6}>
-        <Img src={item.imgUrl} alt="" />
+        <Img src={item.imgUrl} alt="food-item" />
         <Box display="flex" alignItems="center" px={2}>
-          <Box flex="1" mt={1} mr={6} height="4rem">
+          <Box flex="1" mt={1} mr={1} height="4rem">
             <Typography variant="h6" style={{ whiteSpace: "nowrap" }}>
               {item.title}
             </Typography>
@@ -67,14 +78,16 @@ const FoodItem = ({ item }) => {
           <Button
             variant="contained"
             disabled={qty === 0}
-            onClick={() => {
-              ctx.handleAddItem({ ...item, amount: qty })
-              setQty(0)
-            }}
+            onClick={handleAddItemToCart}
           >
             Add item
           </Button>
         </Box>
+        {showMessage && (
+          <Box mx={2} mb={2}>
+            <Alert severity="success">Added to cart</Alert>
+          </Box>
+        )}
       </Paper>
     </Grid>
   )

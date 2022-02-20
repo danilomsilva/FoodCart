@@ -14,6 +14,7 @@ import { CartContext } from "../App"
 const CartModal = () => {
   const [qty, setQty] = useState(0)
   const ctx = useContext(CartContext)
+  const hasItems = !!ctx.items.length
 
   const handleChangeQty = (type, item) => {
     if (type === "plus") {
@@ -29,8 +30,13 @@ const CartModal = () => {
 
   return (
     <Dialog onClose={ctx.handleCloseModal} open={ctx.openModal}>
-      <DialogTitle>Check out your cart</DialogTitle>
+      <DialogTitle>{hasItems ? "Check out your cart" : "Ooops!"}</DialogTitle>
       <Divider />
+      {!hasItems && (
+        <Box m={3}>
+          <Typography>Your cart is empty. </Typography>
+        </Box>
+      )}
       {ctx.items.map((item, index) => {
         return (
           <Box key={item.id + index}>
@@ -46,7 +52,7 @@ const CartModal = () => {
               <Box width="100%">
                 <Typography>{item.title}</Typography>
                 <Typography variant="caption">{item.description}</Typography>
-                <Box display="flex" mt={2} alignItems="flex-end">
+                <Box display="flex" mt={2}>
                   <ButtonGroup>
                     <Button
                       variant="contained"
@@ -66,8 +72,13 @@ const CartModal = () => {
                       +
                     </Button>
                   </ButtonGroup>
-                  <Typography flex="1" textAlign="right" variant="h5">
-                    € {item.price}
+                  <Typography
+                    flex="1"
+                    textAlign="right"
+                    variant="h5"
+                    style={{ whiteSpace: "nowrap" }}
+                  >
+                    € {item.price.toFixed(2)}
                   </Typography>
                 </Box>
               </Box>
@@ -77,11 +88,21 @@ const CartModal = () => {
         )
       })}
       <Divider />
-      <Box display="flex" gap="3rem" mx={3} my={2}>
-        <Button variant="contained">Payment</Button>
+      <Box display="flex" mx={3} my={2}>
+        <Button
+          variant="contained"
+          disabled={!ctx.items.length}
+          onClick={() =>
+            alert("Payment feature still needs to be implemented.")
+          }
+        >
+          Payment
+        </Button>
 
         <Box flex="1" />
-        <Typography variant="h5">Total: € {ctx.finalPrice}</Typography>
+        <Typography variant="h5">
+          Total: € {ctx.finalPrice.toFixed(2)}
+        </Typography>
       </Box>
       <Divider />
     </Dialog>
