@@ -2,10 +2,11 @@ import {
   Alert,
   Box,
   Button,
+  ButtonGroup,
   Grid,
   Paper,
+  Rating,
   Typography,
-  ButtonGroup,
   TextField,
 } from "@mui/material"
 import { useContext, useState } from "react"
@@ -47,10 +48,18 @@ const FoodItem = ({ item }) => {
       <Paper sx={{ overflow: "hidden", borderRadius: "0.5rem" }} elevation={6}>
         <Img src={item.imgUrl} alt="food-item" />
         <Box display="flex" alignItems="center" px={2}>
-          <Box flex="1" mt={1} mr={1} height="4rem">
+          <Box flex="1" mt={1} mr={1} minHeight="5rem" maxHeight="6rem">
             <Typography variant="h6" style={{ whiteSpace: "nowrap" }}>
               {item.title}
             </Typography>
+            <Box>
+              <Rating
+                name="simple-controlled"
+                value={item.stars}
+                size="small"
+                readOnly={true}
+              />
+            </Box>
             <Typography variant="caption">{item.description}</Typography>
           </Box>
           <Typography variant="h5" style={{ whiteSpace: "nowrap" }}>
@@ -84,7 +93,15 @@ const FoodItem = ({ item }) => {
           </Button>
         </Box>
         {showMessage && (
-          <Box mx={2} mb={2}>
+          <Box
+            mx={2}
+            mb={2}
+            sx={{
+              position: "fixed",
+              bottom: 0,
+              right: "2rem",
+            }}
+          >
             <Alert severity="success">Added to cart</Alert>
           </Box>
         )}

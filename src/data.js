@@ -4,6 +4,7 @@ export const data = [
     title: "BBQ Selection",
     description: "Picanha, Ribs, Smoked Bacon, Chicken + Special BBQ Sauce",
     price: 34.0,
+    stars: 4,
     imgUrl:
       "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
   },
@@ -12,6 +13,7 @@ export const data = [
     title: "Halloumi",
     description: "Fried cheese, bread, honey and thyme",
     price: 23.0,
+    stars: 5,
     imgUrl:
       "https://static.independent.co.uk/s3fs-public/thumbnails/image/2018/02/26/13/halloumisticks.jpg?width=1200",
   },
@@ -20,6 +22,7 @@ export const data = [
     title: "Grilled Aubergine",
     description: "Fresh aubergine, Basil and Sauce",
     price: 12.5,
+    stars: 3,
     imgUrl:
       "https://cozinhandoemroma2.files.wordpress.com/2015/06/berinjelas.jpg",
   },
@@ -28,6 +31,7 @@ export const data = [
     title: "Grilled Salmon",
     description: "Salmon with fresh vegetables",
     price: 42.0,
+    stars: 4,
     imgUrl:
       "https://www.cookingclassy.com/wp-content/uploads/2018/05/grilled-salmon-3.jpg",
   },
@@ -36,6 +40,7 @@ export const data = [
     title: "Italian Shrimp",
     description: "Grilled Shrimp with Butter",
     price: 42.5,
+    stars: 5,
     imgUrl:
       "https://www.seriouseats.com/thmb/Qwv4wgmc6gI19QQlnx9ioeXIl6I=/1500x844/smart/filters:no_upscale()/plump-and-tender-cocktail-shrimp-Hero-3-1d809ff87f9547009411023cf092b096.jpg",
   },

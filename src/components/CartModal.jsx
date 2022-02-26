@@ -8,6 +8,7 @@ import {
   Button,
   ButtonGroup,
   TextField,
+  Rating,
 } from "@mui/material"
 import { CartContext } from "../App"
 
@@ -33,7 +34,7 @@ const CartModal = () => {
       <DialogTitle>{hasItems ? "Check out your cart" : "Ooops!"}</DialogTitle>
       <Divider />
       {!hasItems && (
-        <Box m={3}>
+        <Box m={3} width="20rem">
           <Typography>Your cart is empty. </Typography>
         </Box>
       )}
@@ -50,7 +51,18 @@ const CartModal = () => {
               </Box>
 
               <Box width="100%">
-                <Typography>{item.title}</Typography>
+                <Box display="flex">
+                  <Typography flex="1">{item.title}</Typography>
+                  <Box marginLeft="4rem">
+                    <Rating
+                      name="simple-controlled"
+                      value={item.stars}
+                      size="small"
+                      readOnly={true}
+                    />
+                  </Box>
+                </Box>
+
                 <Typography variant="caption">{item.description}</Typography>
                 <Box display="flex" mt={2}>
                   <ButtonGroup>
@@ -88,23 +100,27 @@ const CartModal = () => {
         )
       })}
       <Divider />
-      <Box display="flex" mx={3} my={2}>
-        <Button
-          variant="contained"
-          disabled={!ctx.items.length}
-          onClick={() =>
-            alert("Payment feature still needs to be implemented.")
-          }
-        >
-          Payment
-        </Button>
+      {hasItems && (
+        <>
+          <Box display="flex" mx={3} my={2}>
+            <Button
+              variant="contained"
+              disabled={!ctx.items.length}
+              onClick={() =>
+                alert("Payment feature still needs to be implemented.")
+              }
+            >
+              Payment
+            </Button>
 
-        <Box flex="1" />
-        <Typography variant="h5">
-          Total: € {ctx.finalPrice.toFixed(2)}
-        </Typography>
-      </Box>
-      <Divider />
+            <Box flex="1" />
+            <Typography variant="h5">
+              Total: € {ctx.finalPrice.toFixed(2)}
+            </Typography>
+          </Box>
+          <Divider />
+        </>
+      )}
     </Dialog>
   )
 }
