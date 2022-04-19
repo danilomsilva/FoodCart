@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useState } from 'react';
 import {
   Box,
   Divider,
@@ -9,86 +9,103 @@ import {
   ButtonGroup,
   TextField,
   Rating,
-} from "@mui/material"
-import { CartContext } from "../App"
+} from '@mui/material';
+import { CartContext } from '../App';
+
+import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 
 const CartModal = () => {
-  const [qty, setQty] = useState(0)
-  const ctx = useContext(CartContext)
-  const hasItems = !!ctx.items.length
+  const [qty, setQty] = useState(0);
+  const ctx = useContext(CartContext);
+  const hasItems = !!ctx.items.length;
 
   const handleChangeQty = (type, item) => {
-    if (type === "plus") {
-      setQty(qty + 1)
-      ctx.handleAddItem({ ...item, amount: 1 })
+    if (type === 'plus') {
+      setQty(qty + 1);
+      ctx.handleAddItem({ ...item, amount: 1 });
     }
-    if (type === "minus") {
-      if (qty === 0) return
-      setQty(qty - 1)
-      ctx.handleRemoveItem(item.id)
+    if (type === 'minus') {
+      setQty(qty - 1);
+      ctx.handleRemoveItem(item.id);
     }
-  }
+  };
 
   return (
     <Dialog onClose={ctx.handleCloseModal} open={ctx.openModal}>
-      <DialogTitle>{hasItems ? "Check out your cart" : "Ooops!"}</DialogTitle>
+      <DialogTitle>{hasItems ? 'Check out your cart' : 'Ooops!'}</DialogTitle>
       <Divider />
       {!hasItems && (
-        <Box m={3} width="20rem">
+        <Box
+          width='20rem'
+          height='12rem'
+          display='flex'
+          flexDirection='column'
+          justifyContent='center'
+          alignItems='center'
+          gap='1rem'
+        >
+          <ProductionQuantityLimitsIcon
+            sx={{ fontSize: '5rem', color: '#dedede' }}
+          />
           <Typography>Your cart is empty. </Typography>
         </Box>
       )}
       {ctx.items.map((item, index) => {
         return (
-          <Box key={item.id + index}>
-            <Box mt={0} m={3} display="flex" gap="1rem">
+          <Box key={item.id + index + Math.random()} sx={{ width: '600px' }}>
+            <Box mt={0} display='flex'>
               <Box>
                 <img
                   src={item.imgUrl}
-                  alt=""
-                  style={{ width: "6rem", height: "6rem", objectFit: "cover" }}
+                  alt=''
+                  style={{
+                    width: '10rem',
+                    height: '8rem',
+                    objectFit: 'cover',
+                    marginLeft: '0.3rem',
+                  }}
                 />
               </Box>
 
-              <Box width="100%">
-                <Box display="flex">
-                  <Typography flex="1">{item.title}</Typography>
-                  <Box marginLeft="4rem">
+              <Box width='100%' m={2} mr={3}>
+                <Box display='flex'>
+                  <Typography flex='1'>{item.title}</Typography>
+                  <Box marginLeft='4rem'>
                     <Rating
-                      name="simple-controlled"
+                      name='simple-controlled'
                       value={item.stars}
-                      size="small"
+                      size='small'
                       readOnly={true}
                     />
                   </Box>
                 </Box>
 
-                <Typography variant="caption">{item.description}</Typography>
-                <Box display="flex" mt={2}>
+                <Typography variant='caption'>{item.description}</Typography>
+                <Box display='flex' mt={2}>
                   <ButtonGroup>
                     <Button
-                      variant="contained"
-                      onClick={() => handleChangeQty("minus", item)}
+                      variant='contained'
+                      onClick={() => handleChangeQty('minus', item)}
                     >
                       -
                     </Button>
                     <TextField
-                      size="small"
-                      sx={{ width: "2.5rem" }}
+                      size='small'
+                      sx={{ width: '2.5rem' }}
                       value={item.amount}
                     />
                     <Button
-                      variant="contained"
-                      onClick={() => handleChangeQty("plus", item)}
+                      variant='contained'
+                      onClick={() => handleChangeQty('plus', item)}
                     >
                       +
                     </Button>
                   </ButtonGroup>
                   <Typography
-                    flex="1"
-                    textAlign="right"
-                    variant="h5"
-                    style={{ whiteSpace: "nowrap" }}
+                    flex='1'
+                    textAlign='right'
+                    variant='h5'
+                    style={{ whiteSpace: 'nowrap' }}
                   >
                     € {item.price.toFixed(2)}
                   </Typography>
@@ -97,32 +114,37 @@ const CartModal = () => {
             </Box>
             <Divider />
           </Box>
-        )
+        );
       })}
       <Divider />
       {hasItems && (
         <>
-          <Box display="flex" mx={3} my={2}>
+          <Box display='flex' mx={3} my={2}>
             <Button
-              variant="contained"
+              variant='contained'
               disabled={!ctx.items.length}
               onClick={() =>
-                alert("Payment feature still needs to be implemented.")
+                alert('Payment feature still needs to be implemented.')
               }
             >
               Payment
             </Button>
 
-            <Box flex="1" />
-            <Typography variant="h5">
-              Total: € {ctx.finalPrice.toFixed(2)}
-            </Typography>
+            <Box flex='1' />
+            <Box display='flex' alignItems='center'>
+              <Typography variant='h6' fontWeight={400}>
+                Total: &nbsp;
+              </Typography>
+              <Typography variant='h5' fontWeight={600}>
+                € {ctx.finalPrice.toFixed(2)}
+              </Typography>
+            </Box>
           </Box>
           <Divider />
         </>
       )}
     </Dialog>
-  )
-}
+  );
+};
 
-export default CartModal
+export default CartModal;
